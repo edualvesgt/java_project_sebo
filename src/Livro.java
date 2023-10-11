@@ -1,8 +1,10 @@
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Livro {
@@ -63,11 +65,13 @@ public class Livro {
     }
 
     public static int VerificarTempo(Date dataLancamento) {
+        //Essa linha converte o objeto Date (dataLancamento) em um objeto LocalDate
+        LocalDate dataLancamentoLocalDate = dataLancamento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate dataAtual = LocalDate.now();
 
-//        Date AnoAtual = new Date();
-//        String AnoLancamento = dataLancamento.getDate();
-//        Date Ano = AnoAtual - "AnoLancamento"
-       return 0 ;
+        int anosDiferenca = dataAtual.getYear() - dataLancamentoLocalDate.getYear();
+
+        return anosDiferenca;
 
     }
 }
